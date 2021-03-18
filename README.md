@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+This project is to show my ability to create a project that searches
+github users and paginates the results.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Epic
 
-## Available Scripts
+## Ticket-1 Setup React App and install dependencies
+Lets get Started!  Need to roadmap and research my approach to creating this project.  Going 
+to use a few new libraries I have been learning: [React Router V6](https://github.com/ReactTraining/react-router/releases) and  
+[Chakra UI](https://chakra-ui.com/).  
+* use create-react-app to scaffold the app
+* get rid of unnecessary files that are not needed
+* install react router(v6), chakra UI
+* set up routes to have '/' be the layout page and always show the search box and results components
+* Add SearchBox, Page, and Results components 
+* Create an API context provider to use global variables to hold the search options in
 
-In the project directory, you can run:
+## Ticket-2 Implement SearchBox
+*  Create a form with an input for search(q), dropdown for results per page(per_page), and apply 
+button
+* Add a toggle switch to add filters
+    * if on show dropdown for sort by(sort - followers(default)|repositories|joined) and order(order - desc(default)|asc)
+    * if off do not add filters to query
+ * When apply button is clicked call an Api function to update the global search variables
+ * Create fetch function in Api provider to construct query from current state of Api variables
+* check the console to make sure results are coming back from the Api
+* make several different queries to test results and add any error handling that might be needed
 
-### `npm start`
+## Ticket-3 Add result component functionality to display pagination box 
+* if results are 0, then display no results message
+* figure out the number of pages based off of results and perPage
+* display pagination buttons including next and previous
+* navigate to page 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Ticket-4 
+* loop through data set and display results with a link to the github users profile
+* make second call to get additional data for user
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
