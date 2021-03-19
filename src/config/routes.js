@@ -7,18 +7,19 @@ import NoRoute from '../components/NoRoute';
 export const routes = [
   {
     path: '/',
-    element: <SearchBox/>,
+    element: <SearchBox />,
     children: [
       {
-        path: '/', element: <Results/>,
+        path: '/',
+        element: <Results />,
         children: [
           {
             path: ':pageNum',
-            element: <Page/>
-          }
-        ]
-      }
-    ]
+            element: <Page />,
+          },
+        ],
+      },
+    ],
   },
-  {path: '*', element: <NoRoute/>}
+  { path: '*', element: <NoRoute /> },
 ];
