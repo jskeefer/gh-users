@@ -1,14 +1,93 @@
 import React from 'react';
-import {Outlet} from 'react-router-dom';
-import {Container} from '@chakra-ui/react';
-import {useAppApi} from '../Api';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { Box, Button, SimpleGrid, Container, FormControl, FormLabel, Input, Select, Switch, useDisclosure } from '@chakra-ui/react';
+import { useAppApi } from '../Api';
 
 export default function SearchBox() {
-  let api = useAppApi();
+  const api = useAppApi();
+  const navigate = useNavigate();
+  const { isOpen, onToggle } = useDisclosure();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const searchParams = {
+      searchTerm: e.target.searchTerm.value,
+      perPage: e.target.perPage.value,
+      addFilters: isOpen,
+    };
+    if (isOpen) {
+      searchParams.order = e.target.order.value;
+      searchParams.sort = e.target.sort.value;
+    }
+    api.applyNewSearch(searchParams);
+    navigate('1');
+  };
 
   return (
     <Container maxW="container.lg">
-      Search Box
+      <Box bg="gray.600" p={5} m={5}>
+        <Box as="form" onSubmit={handleSubmit}>
+          <SimpleGrid columns={[1, 3, 3]} spacing="10px">
+            <Box>
+              <FormControl>
+                <FormLabel>Search For Users</FormLabel>
+                <Input bg="gray.700" type="text" id="searchTerm" />
+              </FormControl>
+            </Box>
+            <Box>
+              <FormControl>
+                <FormLabel>Results Per Page</FormLabel>
+                <Select bg="gray.700" id="perPage">
+                  <option>10</option>
+                  <option>25</option>
+                  <option>50</option>
+                  <option>100</option>
+                </Select>
+              </FormControl>
+            </Box>
+            <Box>
+              <FormControl display="flex" alignItems="center">
+                <FormLabel htmlFor="addFilters" mt="10">
+                  Apply Filters?
+                </FormLabel>
+                <Switch onChange={onToggle} id="addFilters" mt="10" />
+              </FormControl>
+            </Box>
+          </SimpleGrid>
+          {isOpen ? (
+            <SimpleGrid columns={[1, 3, 3]} mt={5} spacing="10px">
+              <Box>
+                <FormControl>
+                  <FormLabel>Sort</FormLabel>
+                  <Select bg="gray.700" id="sort">
+                    <option>followers</option>
+                    <option>repositories</option>
+                    <option>joined</option>
+                  </Select>
+                </FormControl>
+              </Box>
+              <Box>
+                <FormControl>
+                  <FormLabel>Order</FormLabel>
+                  <Select bg="gray.700" id="order">
+                    <option>desc</option>
+                    <option>asc</option>
+                  </Select>
+                </FormControl>
+              </Box>
+            </SimpleGrid>
+          ) : (
+            ''
+          )}
+          <SimpleGrid columns={[1, 3, 3]} spacing="10px">
+            <Box pt={5}>
+              <Button as="button" bg="tomato" type="submit">
+                Apply
+              </Button>
+            </Box>
+          </SimpleGrid>
+        </Box>
+      </Box>
       <Outlet />
     </Container>
   );
