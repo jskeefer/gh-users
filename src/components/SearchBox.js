@@ -1,6 +1,17 @@
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { Box, Button, SimpleGrid, Container, FormControl, FormLabel, Input, Select, Switch, useDisclosure } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  SimpleGrid,
+  Container,
+  FormControl,
+  FormLabel,
+  Input,
+  Select,
+  Switch,
+  useDisclosure,
+} from '@chakra-ui/react';
 import { useAppApi } from '../Api';
 
 export default function SearchBox() {

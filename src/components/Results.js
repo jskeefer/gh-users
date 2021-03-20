@@ -2,16 +2,11 @@ import React, { useEffect } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Box, Stack, Skeleton, useToast } from '@chakra-ui/react';
 import { useAppApi } from '../Api';
+import DisplayResultInfoPagination from './DisplayResultInfoPagination';
 
 export default function Results() {
   const api = useAppApi();
-  const navigate = useNavigate();
   const toast = useToast();
-
-  const gotoPage = (p) => {
-    api.updatePage(p);
-    navigate(p);
-  };
 
   useEffect(() => {
     if (api.makeApiCall) {
@@ -31,23 +26,8 @@ export default function Results() {
 
   return (
     <Box bg="gray.600" p={5} m={5}>
-      Query Results
-      {api.makeApiCall ? (
-        <Stack>
-          <Skeleton height="50px" />
-        </Stack>
-      ) : (
-        <Box>
-          <Box>
-            items
-            {api.results.items.length}
-          </Box>
-          <Box>
-            items
-            {api.results.total_count}
-          </Box>
-        </Box>
-      )}
+      <DisplayResultInfoPagination />
+
       <Box mt={10}>
         <Outlet />
       </Box>
