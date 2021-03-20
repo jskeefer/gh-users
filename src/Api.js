@@ -32,7 +32,6 @@ function useProvideApi() {
   };
 
   const callApiSearchUsers = () => {
-    console.log('called');
     let route = `https://api.github.com/search/users?q=${searchTerm}&per_page=${perPage}&page=${page}`;
     if (addFilters) {
       route += `&sort=${sort}&order=${order}`;

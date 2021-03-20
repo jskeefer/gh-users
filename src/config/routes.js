@@ -4,7 +4,7 @@ import Results from '../components/Results';
 import Page from '../components/Page';
 import NoRoute from '../components/NoRoute';
 
-export const routes = [
+const routes = [
   {
     path: '/',
     element: <SearchBox />,
@@ -23,3 +23,5 @@ export const routes = [
   },
   { path: '*', element: <NoRoute /> },
 ];
+
+export default routes;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Box, Skeleton, Stack } from '@chakra-ui/react';
+import { Box, Skeleton, Stack, Avatar } from '@chakra-ui/react';
 import { useAppApi } from '../Api';
 
 export default function Page() {
@@ -16,7 +16,12 @@ export default function Page() {
       ) : (
         <Box>
           {api.results.items
-            ? api.results.items.map((r) => <Box key={r.id}>{r.id}</Box>)
+            ? api.results.items.map((r) => (
+                <Box key={r.id}>
+                  {r.id}
+                  <Avatar name="Dan Abrahmov" src={r.avatar_url} />
+                </Box>
+              ))
             : 'No Results'}
         </Box>
       )}
