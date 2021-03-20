@@ -35,7 +35,12 @@ to use a few new libraries I have been learning: [React Router V6](https://githu
 - display pagination buttons including next and previous
 - navigate to page
 
-## Ticket-4
+## Ticket-4 Display results
 
 - loop through data set and display results with a link to the github users profile
 - make second call to get additional data for user
+
+## Ticket-5 Build App and deploy to cloud
+
+- create a gulp file to deploy to cloud site
+- time permitting fix styling, more error testing, add extras, etc...

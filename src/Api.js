@@ -13,6 +13,14 @@ function useProvideApi() {
   const [order, setOrder] = useState('desc');
   const [results, setResults] = useState({ items: [] });
   const [makeApiCall, setMakeApiCall] = useState(false);
+  const authToken = process.env.REACT_APP_GITHUB_TOKEN;
+  const headers = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: 'token ' + authToken,
+    },
+  };
 
   const applyNewSearch = (params) => {
     setSearchTerm(params.searchTerm);
@@ -37,13 +45,7 @@ function useProvideApi() {
       route += `&sort=${sort}&order=${order}`;
     }
 
-    const params = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-    return fetch(route, params)
+    return fetch(route, headers)
       .then((response) => response.json())
       .then((res) => {
         if (res.total_count) {
@@ -59,6 +61,14 @@ function useProvideApi() {
       });
   };
 
+  const callUsersInfoUrl = (url) =>
+    fetch(url, headers)
+      .then((response) => response.json())
+      .then((res) => res)
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+
   return {
     searchTerm,
     page,
@@ -71,6 +81,7 @@ function useProvideApi() {
     callApiSearchUsers,
     updatePage,
     makeApiCall,
+    callUsersInfoUrl,
   };
 }
 

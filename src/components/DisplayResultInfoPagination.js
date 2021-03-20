@@ -97,7 +97,12 @@ export default function DisplayResultInfoPagination() {
           )}
           {pagination.totalPages
             ? pagination.pages.map((page) => (
-                <Button ml="2px" mr="2px" onClick={() => gotoPage(page)}>
+                <Button
+                  key={page}
+                  ml="2px"
+                  mr="2px"
+                  onClick={() => gotoPage(page)}
+                >
                   {page}
                 </Button>
               ))
