@@ -11,6 +11,8 @@ import {
   Select,
   Switch,
   useDisclosure,
+  Center,
+  Image,
 } from '@chakra-ui/react';
 import { useAppApi } from '../Api';
 
@@ -37,12 +39,17 @@ export default function SearchBox() {
   return (
     <Container maxW="container.lg">
       <Box bg="gray.600" p={5} m={5}>
-        <Box as="form" onSubmit={handleSubmit}>
+        <Box as="form" id="githubUsersSearch" onSubmit={handleSubmit}>
           <SimpleGrid columns={[1, 3, 3]} spacing="10px">
             <Box>
               <FormControl>
                 <FormLabel>Search For Users</FormLabel>
-                <Input bg="gray.700" type="text" id="searchTerm" />
+                <Input
+                  bg="gray.700"
+                  type="text"
+                  id="searchTerm"
+                  defaultValue="jskeefer"
+                />
               </FormControl>
             </Box>
             <Box>
@@ -100,6 +107,13 @@ export default function SearchBox() {
         </Box>
       </Box>
       <Outlet />
+      <Box>
+        <Center p="20px" color="white">
+          <Box>
+            <Image src="https://uploads-ssl.webflow.com/5a9e6c4d3dd0520001f5b761/5e84f7055154236d4531a86e_td_media.svg" />
+          </Box>
+        </Center>
+      </Box>
     </Container>
   );
 }

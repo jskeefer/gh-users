@@ -17,5 +17,6 @@ module.exports = {
     'prettier/prettier': ['warn'],
     'no-unused-vars': 'warn',
     'react/prop-types': 'warn',
+    'prefer-template': 'warn',
   },
 };

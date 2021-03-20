@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
-import { Box, Stack, Skeleton, useToast } from '@chakra-ui/react';
+import { Outlet } from 'react-router-dom';
+import { Box, useToast } from '@chakra-ui/react';
 import { useAppApi } from '../Api';
 import DisplayResultInfoPagination from './DisplayResultInfoPagination';
 
