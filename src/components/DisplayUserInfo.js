@@ -15,12 +15,12 @@ import {
 import { useAppApi } from '../Api';
 
 export default function DisplayUserInfo(url) {
-  const api = useAppApi();
+  const { callUsersInfoUrl } = useAppApi();
   const [isLoading, setIsLoading] = useState(true);
   const [userInfo, setUserInfo] = useState({});
 
   const getUserInfo = () => {
-    api.callUsersInfoUrl(url.user).then((res) => {
+    callUsersInfoUrl(url.user).then((res) => {
       setUserInfo(res);
       setIsLoading(false);
     });
@@ -37,7 +37,7 @@ export default function DisplayUserInfo(url) {
           <Skeleton height="20px" />
         </Stack>
       ) : (
-        <LinkBox bg="gray.700" mb="20px" p="4">
+        <LinkBox bg="gray.700" mb="10px" p="3">
           <Grid
             templateRows="repeat(2, 1fr)"
             templateColumns="repeat(13, 1fr)"
@@ -52,16 +52,16 @@ export default function DisplayUserInfo(url) {
                 <Avatar size="lg" mt="7px" src={userInfo.avatar_url} />
               </LinkOverlay>
             </GridItem>
-            <GridItem colSpan={3}>
+            <GridItem colSpan={[12, 6, 3]}>
               <Link color="papayawhip" href={userInfo.html_url} isExternal>
                 {userInfo.login}
               </Link>
             </GridItem>
-            <GridItem colSpan={3}> {userInfo.name} </GridItem>
-            <GridItem colSpan={6}> {userInfo.location}</GridItem>
+            <GridItem colSpan={[12, 6, 3]}> {userInfo.name} </GridItem>
+            <GridItem colSpan={[12, 6, 6]}> {userInfo.location}</GridItem>
             <GridItem colSpan={12}>
               <SimpleGrid
-                columns={[2, 3, 4]}
+                columns={[1, 2, 4]}
                 spacing="20px"
                 bg="papayawhip"
                 color="gray.900"
@@ -70,7 +70,7 @@ export default function DisplayUserInfo(url) {
                   <Box as="span" fontWeight="800">
                     Followers:
                   </Box>{' '}
-                  <Tag as="span" bg="tomato">
+                  <Tag as="span" bg="tomato" float={['right', 'right', 'none']}>
                     {userInfo.followers}
                   </Tag>
                 </Box>
@@ -78,7 +78,7 @@ export default function DisplayUserInfo(url) {
                   <Box as="span" fontWeight="800">
                     Following:
                   </Box>{' '}
-                  <Tag as="span" bg="tomato">
+                  <Tag as="span" bg="tomato" float={['right', 'right', 'none']}>
                     {userInfo.following}
                   </Tag>
                 </Box>
@@ -86,7 +86,7 @@ export default function DisplayUserInfo(url) {
                   <Box as="span" fontWeight="800">
                     Repos:
                   </Box>{' '}
-                  <Tag as="span" bg="tomato">
+                  <Tag as="span" bg="tomato" float={['right', 'right', 'none']}>
                     {userInfo.public_repos}
                   </Tag>
                 </Box>
@@ -94,7 +94,7 @@ export default function DisplayUserInfo(url) {
                   <Box as="span" fontWeight="800">
                     Gists:
                   </Box>{' '}
-                  <Tag as="span" bg="tomato">
+                  <Tag as="span" bg="tomato" float={['right', 'right', 'none']}>
                     {userInfo.public_gists}
                   </Tag>
                 </Box>

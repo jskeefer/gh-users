@@ -13,9 +13,8 @@ import paginate from 'jw-paginate';
 import { useAppApi } from '../Api';
 
 export default function DisplayResultInfoPagination() {
-  const api = useAppApi();
+  const { results, page, perPage, updatePage } = useAppApi();
   const navigate = useNavigate();
-
   const [numPages, setNumPages] = useState(0);
   const [totalResults, setTotalResults] = useState(0);
   const [showPrevious, setShowPrevious] = useState(false);
@@ -25,48 +24,46 @@ export default function DisplayResultInfoPagination() {
   const [pagination, setPagination] = useState([]);
 
   const updatePagination = () => {
-    const totalPages = Math.ceil(
-      Number(api.results.total_count) / Number(api.perPage)
-    );
-    setTotalResults(api.results.total_count);
-    if (!api.results.total_count) {
+    const totalPages = Math.ceil(Number(results.total_count) / Number(perPage));
+    setTotalResults(results.total_count);
+    if (!results.total_count) {
       setTotalResults(0);
     } else {
       setNumPages(totalPages);
     }
     setShowNext(false);
-    if (api.page < totalPages) {
-      setNextPage(api.page + 1);
+    if (page < totalPages) {
+      setNextPage(page + 1);
       setShowNext(true);
     }
     setShowPrevious(false);
-    if (api.page > 1) {
-      setPreviousPage(api.page - 1);
+    if (page > 1) {
+      setPreviousPage(page - 1);
       setShowPrevious(true);
     }
-    setPagination(paginate(api.results.total_count, api.page, api.perPage, 10));
+    setPagination(paginate(results.total_count, page, perPage, 10));
   };
 
   useEffect(() => {
     updatePagination();
-  }, [api.results]);
+  }, [results]);
 
   const gotoPage = (p) => {
-    api.updatePage(p);
+    updatePage(p);
     navigate(`/${p}`);
   };
 
   return (
     <Box>
-      <SimpleGrid columns={[2, 3, 4]} spacing="40px" mb="10px">
+      <SimpleGrid columns={[1, 2, 4]} spacing="10px" mb="10px">
         <Box>
           Total Results <Tag colorScheme="green">{totalResults}</Tag>
         </Box>
         <Box>
-          {api.results.items.length ? (
+          {results.items.length ? (
             <span>
-              Displaying{' '}
-              <Tag colorScheme="green">{api.results.items.length}</Tag> Results
+              Displaying <Tag colorScheme="green">{results.items.length}</Tag>{' '}
+              Results
             </span>
           ) : (
             ''
@@ -75,7 +72,7 @@ export default function DisplayResultInfoPagination() {
         <Box>
           {numPages ? (
             <span>
-              Page <Tag colorScheme="green">{api.page}</Tag>/{' '}
+              Page <Tag colorScheme="green">{page}</Tag>/{' '}
               <Tag colorScheme="green">{numPages}</Tag>
             </span>
           ) : (
@@ -96,14 +93,14 @@ export default function DisplayResultInfoPagination() {
             ''
           )}
           {pagination.totalPages
-            ? pagination.pages.map((page) => (
+            ? pagination.pages.map((pageNo) => (
                 <Button
-                  key={page}
+                  key={pageNo}
                   ml="2px"
                   mr="2px"
-                  onClick={() => gotoPage(page)}
+                  onClick={() => gotoPage(pageNo)}
                 >
-                  {page}
+                  {pageNo}
                 </Button>
               ))
             : ''}

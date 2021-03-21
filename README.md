@@ -1,13 +1,19 @@
 This project is to show my ability to create a project that searches
 github users and paginates the results.
 
+## Credits
+
+- [React Router V6](https://github.com/ReactTraining/react-router/releases)
+- [Chakra UI](https://chakra-ui.com/)
+- [jw-paginate](https://www.npmjs.com/package/jw-paginate)
+- [eslint](https://eslint.org/)
+- [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb)
+- [prettier](https://prettier.io/)
+- [gulp](https://gulpjs.com/)
+
 # Epic
 
 ## Ticket-1 Setup React App and install dependencies
-
-Lets get Started! Need to roadmap and research my approach to creating this project. Going
-to use a few new libraries I have been learning: [React Router V6](https://github.com/ReactTraining/react-router/releases) and  
-[Chakra UI](https://chakra-ui.com/).
 
 - use create-react-app to scaffold the app
 - get rid of unnecessary files that are not needed

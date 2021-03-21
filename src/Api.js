@@ -77,10 +77,10 @@ function useProvideApi() {
     sort,
     order,
     results,
+    makeApiCall,
     applyNewSearch,
     callApiSearchUsers,
     updatePage,
-    makeApiCall,
     callUsersInfoUrl,
   };
 }

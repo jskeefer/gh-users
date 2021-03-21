@@ -11,6 +11,8 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
     "framer-motion": "^3.10.5",
+    "gulp": "^4.0.2",
+    "gulp-rsync": "0.0.9",
     "history": "^5.0.0",
     "jw-paginate": "^1.0.4",
     "prettier": "^2.2.1",

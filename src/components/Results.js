@@ -5,12 +5,12 @@ import { useAppApi } from '../Api';
 import DisplayResultInfoPagination from './DisplayResultInfoPagination';
 
 export default function Results() {
-  const api = useAppApi();
+  const { makeApiCall, callApiSearchUsers } = useAppApi();
   const toast = useToast();
 
   useEffect(() => {
-    if (api.makeApiCall) {
-      api.callApiSearchUsers().then((res) => {
+    if (makeApiCall) {
+      callApiSearchUsers().then((res) => {
         if (res.message) {
           toast({
             title: 'Error!',
@@ -22,13 +22,12 @@ export default function Results() {
         }
       });
     }
-  }, [api.makeApiCall]);
+  }, [makeApiCall]);
 
   return (
-    <Box bg="gray.600" p={5} m={5}>
+    <Box bg="gray.600" p={2} mt={5}>
       <DisplayResultInfoPagination />
-
-      <Box mt={10}>
+      <Box mt={5}>
         <Outlet />
       </Box>
     </Box>
