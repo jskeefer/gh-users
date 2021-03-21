@@ -13,11 +13,12 @@ import {
   useDisclosure,
   Center,
   Image,
+  Heading,
 } from '@chakra-ui/react';
 import { useAppApi } from '../Api';
 
 export default function SearchBox() {
-  const api = useAppApi();
+  const { applyNewSearch } = useAppApi();
   const navigate = useNavigate();
   const { isOpen, onToggle } = useDisclosure();
 
@@ -32,15 +33,18 @@ export default function SearchBox() {
       searchParams.order = e.target.order.value;
       searchParams.sort = e.target.sort.value;
     }
-    api.applyNewSearch(searchParams);
+    applyNewSearch(searchParams);
     navigate('1');
   };
 
   return (
     <Container maxW="container.lg">
-      <Box bg="gray.600" p={5} m={5}>
+      <Heading color="papayawhip" mb={1}>
+        GitHub Users Search
+      </Heading>
+      <Box bg="gray.600" p={2}>
         <Box as="form" id="githubUsersSearch" onSubmit={handleSubmit}>
-          <SimpleGrid columns={[1, 3, 3]} spacing="10px">
+          <SimpleGrid columns={[1, 2, 3]} spacing="10px">
             <Box>
               <FormControl>
                 <FormLabel>Search For Users</FormLabel>
@@ -73,7 +77,7 @@ export default function SearchBox() {
             </Box>
           </SimpleGrid>
           {isOpen ? (
-            <SimpleGrid columns={[1, 3, 3]} mt={5} spacing="10px">
+            <SimpleGrid columns={[1, 2, 3]} mt={5} spacing="10px">
               <Box>
                 <FormControl>
                   <FormLabel>Sort</FormLabel>
